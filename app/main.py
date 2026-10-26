@@ -48,7 +48,7 @@ def inspect_image(data):
 
 @app.get('/',response_class=HTMLResponse)
 def home():
-    return (ROOT/'templates'/'index.html').read_text(encoding='utf-8')
+    return (ROOT/'template'/'index.html').read_text(encoding='utf-8')
 
 @app.get('/api/health')
 def health():
