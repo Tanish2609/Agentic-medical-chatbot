@@ -180,13 +180,13 @@ button:focus-visible,
 button:disabled { opacity: .55; cursor: wait; }
 
 #preview {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 12px;
   padding: 12px 20px 0;
 }
 
-#preview[hidden] { display: none; }
+#preview.is-visible { display: flex; }
 
 #thumbnail {
   width: 74px;

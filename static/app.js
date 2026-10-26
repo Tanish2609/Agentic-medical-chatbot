@@ -53,9 +53,26 @@ function setImage(file) {
 
   const reader = new FileReader();
   reader.onload = () => {
-    imageData = reader.result;
-    $('thumbnail').src = imageData;
-    $('preview').hidden = false;
+    const dataUrl = String(reader.result || '');
+    const imageCheck = new Image();
+
+    imageCheck.onload = () => {
+      imageData = dataUrl;
+      $('thumbnail').src = dataUrl;
+      $('preview').hidden = false;
+      $('preview').classList.add('is-visible');
+    };
+
+    imageCheck.onerror = () => {
+      clearImage();
+      alert('This file could not be read as an image. Please choose another image.');
+    };
+
+    imageCheck.src = dataUrl;
+  };
+  reader.onerror = () => {
+    clearImage();
+    alert('This file could not be read. Please choose another image.');
   };
   reader.readAsDataURL(file);
 }
@@ -64,6 +81,7 @@ function clearImage() {
   imageData = null;
   $('thumbnail').removeAttribute('src');
   $('preview').hidden = true;
+  $('preview').classList.remove('is-visible');
   $('image').value = '';
 }
 
