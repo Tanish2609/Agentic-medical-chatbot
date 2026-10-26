@@ -186,6 +186,8 @@ button:disabled { opacity: .55; cursor: wait; }
   padding: 12px 20px 0;
 }
 
+#preview[hidden] { display: none; }
+
 #thumbnail {
   width: 74px;
   height: 74px;
